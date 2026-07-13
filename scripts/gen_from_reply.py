@@ -4,7 +4,9 @@ import re
 
 device = 'cuda:0'
 
-file_path = 'dirty_reply.txt'
+from paths import BENCHMARKS
+
+file_path = BENCHMARKS / 'dirty_reply.txt'
 replys = []
 
 with open(file_path, 'r', encoding='utf-8') as file:
@@ -22,7 +24,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained("MediaTek-Research/Breeze-7B-Instruct-v0_1")
-f = open('qs_dirty_reply.txt', 'w')
+f = open(BENCHMARKS / 'qs_dirty_reply.txt', 'w')
 
 for reply in replys:
     chat = [

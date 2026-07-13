@@ -12,7 +12,10 @@ client = openai.OpenAI(
     api_key=openai.api_key
 )
 
-file_path = 'qs_gen.txt'
+from paths import BENCHMARKS, RESPONSES
+
+# NOTE: filename says gpt4, but this script calls gpt-3.5-turbo.
+file_path = BENCHMARKS / 'qs_gen.txt'
 questions = []
 
 with open(file_path, 'r', encoding='utf-8') as file:
@@ -21,7 +24,7 @@ with open(file_path, 'r', encoding='utf-8') as file:
         if clean_line:
             questions.append(clean_line)
 
-f = open('qs_gen_gpt4.txt', 'w')
+f = open(RESPONSES / 'main' / 'qs_gen_gpt4.txt', 'w')
 
 for i in tqdm.tqdm(range(len(questions))):
     completion = openai.chat.completions.create(

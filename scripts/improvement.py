@@ -26,7 +26,9 @@ improvement = '''
 '''
 
 llm = LLM(model="../models/llama2-70b-ccw_cp-l-v2_tv_noemb_xwin", tensor_parallel_size=8, dtype='float16')
-file = open('types.txt', 'r')
+from paths import ARCHIVE, BENCHMARKS
+
+file = open(BENCHMARKS / 'types.txt', 'r')
 Lines = file.readlines()
 
 count = 0
@@ -37,7 +39,7 @@ for line in Lines:
 sampling_params = SamplingParams(temperature=0.75, top_p=0.9, max_tokens=1024)
 full_prompt = '<s> {} USER: {} ASSISTANT: '
 # print(full_prompt)
-opt = open('qs.txt', 'w')
+opt = open(ARCHIVE / 'qs.txt', 'w')
 for i in tqdm.tqdm(range(47)):
     outputs = llm.generate(full_prompt.format(system_prompt, [prompts[i]]), sampling_params)
     # print(outputs)

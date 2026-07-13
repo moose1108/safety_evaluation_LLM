@@ -19,7 +19,9 @@ import re
 
 device = 'cuda:0'
 
-file_path = 'qs.txt'
+from paths import ARCHIVE, BENCHMARKS
+
+file_path = ARCHIVE / 'qs.txt'
 questions = []
 
 with open(file_path, 'r', encoding='utf-8') as file:
@@ -37,7 +39,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 # Load tokenizer
 tokenizer = AutoTokenizer.from_pretrained("MediaTek-Research/Breeze-7B-Instruct-v0_1")
-f = open('qs_gen_oneshot.txt', 'w')
+f = open(BENCHMARKS / 'qs_gen_oneshot.txt', 'w')
 
 for question in questions:
     for i in tqdm.tqdm(range(50)):

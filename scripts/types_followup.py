@@ -3,10 +3,12 @@ import torch
 import re
 import tqdm
 
+from paths import BENCHMARKS, RESPONSES
+
 device = 'cuda:0'
 
-file_path = 'qs_gen.txt'
-file_path2 = 'qs_gen_yentinglin.txt'
+file_path = BENCHMARKS / 'qs_gen.txt'
+file_path2 = RESPONSES / 'main' / 'qs_gen_yentinglin.txt'
 questions = []
 replys = []
 
@@ -40,7 +42,7 @@ model = AutoModelForCausalLM.from_pretrained(
 ).to(device)
 
 tokenizer = AutoTokenizer.from_pretrained("MediaTek-Research/Breeze-7B-Instruct-v0_1")
-f = open('qs_gen_followup.txt', 'w')
+f = open(BENCHMARKS / 'qs_gen_followup.txt', 'w')
 
 for i in tqdm.tqdm(range(len(replys))):
     chat = [

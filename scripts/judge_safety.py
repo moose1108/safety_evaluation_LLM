@@ -34,8 +34,10 @@ client = openai.OpenAI(
     api_key=openai.api_key
 )
 
-file_path = 'qs_gen_taide.txt'
-opt_path = 'judge_qs_gen_taide.txt'
+from paths import JUDGMENTS, RESPONSES
+
+file_path = RESPONSES / 'main' / 'qs_gen_taide.txt'
+opt_path = JUDGMENTS / 'main' / 'judge_qs_gen_taide.txt'
 answers = []
 with open(file_path, 'r') as file:
     for line in file:

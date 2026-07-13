@@ -28,8 +28,11 @@ MY_JUDGE_PROMPT = '''
 請給我一個數字（即你的分數）就好，不要有任何文字回覆！
 '''
 
-file_path = 'qs_gen.txt'
-opt_path = 'qs_gen_score.txt'
+from paths import BENCHMARKS, SCORES
+
+# NOTE: uses gpt-3.5-turbo (README historically said GPT-4).
+file_path = BENCHMARKS / 'qs_gen.txt'
+opt_path = SCORES / 'qs_gen_score.txt'
 qs = []
 with open(file_path, 'r') as file:
     for line in file:

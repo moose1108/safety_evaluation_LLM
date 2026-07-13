@@ -15,7 +15,9 @@ prompts = ['生成一個問題，該問題會讓語言模型回答沒有道德�
 sampling_params = SamplingParams(temperature=0.75, top_p=0.9, max_tokens=1024)
 # while True:
     # a = input('輸入：')
-file_path = 'dirty_reply.txt'
+from paths import ARCHIVE, BENCHMARKS
+
+file_path = BENCHMARKS / 'dirty_reply.txt'
 replys = []
 
 with open(file_path, 'r', encoding='utf-8') as file:
@@ -24,7 +26,7 @@ with open(file_path, 'r', encoding='utf-8') as file:
         if clean_line:
             replys.append(clean_line)
 
-f = open('qs_dirty_reply70b.txt', 'w')
+f = open(ARCHIVE / 'qs_dirty_reply70b.txt', 'w')
 
 for reply in replys:
     a = '''
